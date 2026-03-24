@@ -16,10 +16,8 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
-// @TestInstance(TestInstance.Lifecycle.PER_CLASS)
+// @SpringBootTest
 public class GithubRepoFinderTest {
 
     private WebDriver chromeDriver;
@@ -33,22 +31,13 @@ public class GithubRepoFinderTest {
         this.repository = "SelTest";
     }
 
-    // ✅ Must NOT be static under PER_CLASS
     @BeforeEach
     void setUp() {
-        // try {
         ChromeOptions chromeOptions = new ChromeOptions();
-        // chromeOptions.addArguments("--headless", "--no-sandbox", "--disable-dev-shm-usage");
         chromeDriver = new ChromeDriver(chromeOptions);
         FirefoxOptions firefoxOptions = new FirefoxOptions();
-        firefoxOptions.setBinary("/usr/bin/firefox-esr");`
-        // firefoxOptions.addArguments("--headless");
+        firefoxOptions.setBinary("/usr/bin/firefox-esr");
         firefoxDriver = new FirefoxDriver(firefoxOptions);
-        System.out.println(chromeDriver == null);
-        // }
-        // catch (Exception e) {
-        //     System.out.println("HERE: " + e);
-        // }
     }
 
     @AfterEach
