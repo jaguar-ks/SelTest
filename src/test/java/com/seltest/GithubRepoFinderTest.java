@@ -36,19 +36,19 @@ public class GithubRepoFinderTest {
     // ✅ Must NOT be static under PER_CLASS
     @BeforeEach
     void setUp() {
-        try {
-            ChromeOptions chromeOptions = new ChromeOptions();
-            // chromeOptions.addArguments("--headless", "--no-sandbox", "--disable-dev-shm-usage");
-            chromeDriver = new ChromeDriver(chromeOptions);
-            FirefoxOptions firefoxOptions = new FirefoxOptions();
-            firefoxOptions.setBinary("/usr/bin/firefox");
-            // firefoxOptions.addArguments("--headless");
-            firefoxDriver = new FirefoxDriver(firefoxOptions);
-            System.out.println(chromeDriver == null);
-        }
-        catch (Exception e) {
-            System.out.println("HERE: " + e);
-        }
+        // try {
+        ChromeOptions chromeOptions = new ChromeOptions();
+        // chromeOptions.addArguments("--headless", "--no-sandbox", "--disable-dev-shm-usage");
+        chromeDriver = new ChromeDriver(chromeOptions);
+        FirefoxOptions firefoxOptions = new FirefoxOptions();
+        firefoxOptions.setBinary("/usr/bin/firefox-esr");`
+        // firefoxOptions.addArguments("--headless");
+        firefoxDriver = new FirefoxDriver(firefoxOptions);
+        System.out.println(chromeDriver == null);
+        // }
+        // catch (Exception e) {
+        //     System.out.println("HERE: " + e);
+        // }
     }
 
     @AfterEach
@@ -69,8 +69,10 @@ public class GithubRepoFinderTest {
 
     @Test
     void firefoxTest() {
-        System.out.println("🔥 Running Firefox test…");
-        Assertions.assertTrue(doTest(firefoxDriver));
+        Assertions.assertTrue(
+            doTest(firefoxDriver),
+            "❌ Repository " + repository + " NOT found."
+        );
     }
 
     private boolean doTest(WebDriver driver) {
